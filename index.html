@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phosphate in the ICU: A Comprehensive Clinical Resource</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .section-title {
+            color: #1e3a8a; /* blue-800 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .flashcard-container {
+            perspective: 1000px;
+        }
+        .flashcard {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard-face {
+            backface-visibility: hidden;
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        audio[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .audio-item {
+            transition: all 0.3s ease;
+        }
+        .audio-item:hover {
+            background-color: #f1f5f9;
+        }
+        .audio-progress {
+            height: 4px;
+            background-color: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .audio-progress-bar {
+            height: 100%;
+            background-color: #3b82f6;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-800">Phosphate ICU Hub</div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#guide" class="text-slate-600 hover:text-blue-600">Interactive Guide</a>
+                <a href="#infographic" class="text-slate-600 hover:text-blue-600">Infographic</a>
+                <a href="#review" class="text-slate-600 hover:text-blue-600">Full Review</a>
+                <a href="#study" class="text-slate-600 hover:text-blue-600">Study Tools</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-6 pt-2 pb-4">
+            <a href="#guide" class="block py-2 text-slate-600 hover:text-blue-600">Interactive Guide</a>
+            <a href="#infographic" class="block py-2 text-slate-600 hover:text-blue-600">Infographic</a>
+            <a href="#review" class="block py-2 text-slate-600 hover:text-blue-600">Full Review</a>
+            <a href="#study" class="block py-2 text-slate-600 hover:text-blue-600">Study Tools</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 py-12">
+        <section id="home" class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold section-title mb-4">The Critical Role of Phosphate in the ICU</h1>
+            <p class="text-md md:text-lg text-slate-500 max-w-3xl mx-auto mb-4 font-semibold">Created by Dr. Islam Khatab</p>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">A comprehensive clinical resource center for understanding, diagnosing, and managing phosphate dysregulation in critically ill patients.</p>
+            <div class="space-x-4">
+                <a href="#guide" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition">View Clinical Guide</a>
+                <a href="#study" class="bg-slate-200 text-slate-800 font-bold py-3 px-6 rounded-lg hover:bg-slate-300 transition">Access Study Tools</a>
+            </div>
+        </section>
+
+        <!-- Interactive Guide Section -->
+        <section id="guide" class="py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-10">Interactive Clinical Guide</h2>
+            <div class="card">
+                <p class="text-center text-slate-600 mb-8">A dynamic dashboard to quickly compare causes, consequences, and management strategies for phosphate disorders at the point of care.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="border-t-4 border-blue-500 p-6 rounded-lg bg-slate-50">
+                        <h3 class="text-2xl font-bold text-blue-600 mb-6 text-center">Hypophosphatemia (&lt;0.81 mmol/L)</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Key Causes:</h4>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Cellular Redistribution:</strong> Refeeding syndrome, insulin therapy, respiratory alkalosis, catecholamines.</li>
+                                    <li><strong>Increased Renal Loss:</strong> Diuretics, Continuous Renal Replacement Therapy (CRRT), osmotic diuresis (e.g., in DKA).</li>
+                                    <li><strong>Decreased Absorption:</strong> Malnutrition, vomiting, diarrhea, use of phosphate binders.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Primary Mechanism of Injury:</h4>
+                                <p class="text-slate-600">Depletion of intracellular <strong>ATP</strong> (cellular energy failure) and <strong>2,3-DPG</strong> (impaired oxygen delivery), leading to multi-organ dysfunction.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-lg mb-2">Management Pearls:</h4>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                     <li>Administer IV phosphate slowly (over 4-8 hours).</li>
+                                     <li>Check and correct concurrent hypomagnesemia.</li>
+                                     <li>Anticipate and prevent in high-risk patients (e.g., refeeding).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t-4 border-red-500 p-6 rounded-lg bg-slate-50">
+                        <h3 class="text-2xl font-bold text-red-600 mb-6 text-center">Hyperphosphatemia (&gt;1.45 mmol/L)</h3>
+                         <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Key Causes:</h4>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                    <li><strong>Decreased Renal Excretion:</strong> Acute Kidney Injury (AKI) is the number one cause.</li>
+                                    <li><strong>Massive Phosphate Load:</strong> Rhabdomyolysis, tumor lysis syndrome, massive hemolysis.</li>
+                                    <li><strong>Exogenous Sources:</strong> Massive blood transfusions, phosphate-containing laxatives, over-repletion.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Primary Mechanism of Injury:</h4>
+                                <p class="text-slate-600">Complexing with serum calcium, leading to acute <strong>hypocalcemia</strong> and deposition of <strong>calcium-phosphate crystals</strong> in soft tissues, causing vascular calcification and organ damage.</p>
+                            </div>
+                             <div>
+                                <h4 class="font-semibold text-lg mb-2">Management Pearls:</h4>
+                                <ul class="list-disc list-inside space-y-1 text-slate-600">
+                                     <li>Treat the underlying cause (e.g., manage AKI).</li>
+                                     <li>Renal Replacement Therapy (RRT) is the definitive treatment.</li>
+                                     <li>Avoid IV calcium unless patient is symptomatic from hypocalcemia.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infographic Section -->
+        <section id="infographic" class="py-16 bg-slate-100 -mx-6 px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-10">Visual Summary: The Infographic</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card">
+                     <h3 class="text-2xl font-bold text-center mb-4">The U-Shaped Risk Curve</h3>
+                     <p class="text-center text-slate-600 mb-6">Large observational studies reveal a critical insight: both low and high serum phosphate levels are independently associated with an increased risk of death in the ICU. This highlights the importance of maintaining phosphate within the normal physiological range.</p>
+                    <div class="h-64 md:h-80"><canvas id="mortalityChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <h3 class="text-2xl font-bold text-center mb-4">Prevalence in High-Risk Populations</h3>
+                    <p class="text-center text-slate-600 mb-6">While common in the general ICU population, the incidence of hypophosphatemia is significantly higher in specific subgroups. Patients with sepsis, trauma, or those undergoing CRRT are particularly vulnerable and require vigilant monitoring.</p>
+                    <div class="h-64 md:h-80"><canvas id="prevalenceChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Review Section -->
+        <section id="review" class="py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-10">In-Depth Review Article</h2>
+            <div class="card">
+                <div id="accordion-container" class="space-y-4">
+                    <!-- Accordion items will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Study Tools Section -->
+        <section id="study" class="py-16 bg-slate-100 -mx-6 px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-10">Interactive Study Tools</h2>
+            <div class="card">
+                <div class="flex justify-center mb-8 border-b overflow-x-auto">
+                    <button class="tab-button active py-2 px-6 font-semibold" data-tab="quiz">Knowledge Check</button>
+                    <button class="tab-button py-2 px-6 font-semibold" data-tab="flashcards">Flashcards</button>
+                    <button class="tab-button py-2 px-6 font-semibold" data-tab="study-guide">Study Guide</button>
+                    <button class="tab-button py-2 px-6 font-semibold" data-tab="audio-guide">Audio Guide</button>
+                </div>
+
+                <div id="quiz" class="tab-content">
+                    <div id="quiz-container" class="max-w-3xl mx-auto">
+                        <p class="text-center text-lg mb-4">Test your understanding of advanced clinical scenarios.</p>
+                        <div id="quiz-feedback" class="text-center mb-4 h-8"></div>
+                        <div id="question-area" class="mb-4"></div>
+                        <div id="options-area" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"></div>
+                        <div class="flex justify-center">
+                            <button id="next-question-btn" class="bg-blue-600 text-white font-bold py-2 px-8 rounded-lg hover:bg-blue-700 transition hidden">Next</button>
+                            <button id="start-quiz-btn" class="bg-green-600 text-white font-bold py-2 px-8 rounded-lg hover:bg-green-700 transition">Start Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="flashcards" class="tab-content hidden">
+                    <div class="max-w-2xl mx-auto">
+                        <p class="text-center text-lg mb-4">Click the card to flip it. Use the buttons to review the deck.</p>
+                        <div id="flashcard-container" class="flashcard-container h-64 mb-6">
+                            <div id="flashcard" class="flashcard w-full h-full relative">
+                                <div id="flashcard-front" class="flashcard-face absolute w-full h-full bg-white border-2 border-blue-500 rounded-lg flex items-center justify-center p-6 text-center text-xl font-semibold"></div>
+                                <div id="flashcard-back" class="flashcard-face flashcard-back absolute w-full h-full bg-blue-100 border-2 border-blue-500 rounded-lg flex items-center justify-center p-6 text-center"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <button id="prev-card-btn" class="bg-slate-200 text-slate-800 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 transition">&larr; Prev</button>
+                            <div id="card-counter" class="text-slate-600 font-semibold"></div>
+                            <button id="next-card-btn" class="bg-slate-200 text-slate-800 font-bold py-2 px-6 rounded-lg hover:bg-slate-300 transition">Next &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="study-guide" class="tab-content hidden">
+                    <div id="study-guide-content" class="prose max-w-none">
+                        <!-- Study guide content injected here -->
+                    </div>
+                </div>
+
+                <div id="audio-guide" class="tab-content hidden">
+                    <div class="max-w-3xl mx-auto">
+                        <p class="text-center text-lg mb-6">Listen to audio explanations of key concepts in phosphate management.</p>
+                        
+                        <div class="space-y-6">
+                            <!-- Audio Item 1 -->
+                            <div class="audio-item p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-2">Introduction to Phosphate in Critical Care</h3>
+                                <div class="flex items-center space-x-4 mb-2">
+                                    <button class="audio-play-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition" data-audio="audio1">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="audio-pause-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition hidden" data-audio="audio1">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="flex-1">
+                                        <div class="audio-progress">
+                                            <div class="audio-progress-bar" data-audio="audio1"></div>
+                                        </div>
+                                    </div>
+                                    <span class="audio-time text-sm text-slate-500" data-audio="audio1">0:00</span>
+                                </div>
+                                <audio id="audio1" preload="metadata">
+                                    <source src="path/to/your/audio-file-1.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <p class="text-sm text-slate-600">A brief overview of why phosphate management is critical in ICU patients and the clinical significance of dysregulation.</p>
+                            </div>
+                            
+                            <!-- Audio Item 2 -->
+                            <div class="audio-item p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-2">Pathophysiology of Hypophosphatemia</h3>
+                                <div class="flex items-center space-x-4 mb-2">
+                                    <button class="audio-play-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition" data-audio="audio2">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="audio-pause-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition hidden" data-audio="audio2">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="flex-1">
+                                        <div class="audio-progress">
+                                            <div class="audio-progress-bar" data-audio="audio2"></div>
+                                        </div>
+                                    </div>
+                                    <span class="audio-time text-sm text-slate-500" data-audio="audio2">0:00</span>
+                                </div>
+                                <audio id="audio2" preload="metadata">
+                                    <source src="path/to/your/audio-file-2.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <p class="text-sm text-slate-600">Detailed explanation of the mechanisms leading to low phosphate levels and their clinical consequences.</p>
+                            </div>
+                            
+                            <!-- Audio Item 3 -->
+                            <div class="audio-item p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-2">Management Strategies for Hyperphosphatemia</h3>
+                                <div class="flex items-center space-x-4 mb-2">
+                                    <button class="audio-play-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition" data-audio="audio3">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    <button class="audio-pause-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition hidden" data-audio="audio3">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="flex-1">
+                                        <div class="audio-progress">
+                                            <div class="audio-progress-bar" data-audio="audio3"></div>
+                                        </div>
+                                    </div>
+                                    <span class="audio-time text-sm text-slate-500" data-audio="audio3">0:00</span>
+                                </div>
+                                <audio id="audio3" preload="metadata">
+                                    <source src="path/to/your/audio-file-3.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <p class="text-sm text-slate-600">Approaches to managing elevated phosphate levels in critically ill patients, including indications for renal replacement therapy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 text-center text-sm text-slate-500">
+                            <p>Note: Replace the audio file paths with your actual audio files. Supported formats: MP3, WAV, OGG.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Clinical Resource Hub. All content is for educational purposes only.</p>
+            <p class="text-slate-400 mt-2">A consolidated interactive experience for managing phosphate in the ICU.</p>
+        </div>
+    </footer>
+
+<script>
+// Mobile Menu Toggle
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+});
+
+// Chart.js Infographic Charts
+const mortalityCtx = document.getElementById('mortalityChart').getContext('2d');
+new Chart(mortalityCtx, {
+    type: 'line',
+    data: {
+        labels: ['0.3 (Severe Low)', '0.5', '0.81 (Normal)', '1.45 (Normal)', '1.8', '2.1 (Severe High)'],
+        datasets: [{
+            label: 'Relative Mortality Risk',
+            data: [1.8, 1.4, 1.0, 1.0, 1.4, 1.8],
+            borderColor: '#3b82f6', // blue-500
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#1e3a8a', // blue-800
+            pointRadius: 5
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { title: { display: true, text: 'Relative Risk of Mortality' } },
+            x: { title: { display: true, text: 'Serum Phosphate (mmol/L)' } }
+        }
+    }
+});
+
+const prevalenceCtx = document.getElementById('prevalenceChart').getContext('2d');
+new Chart(prevalenceCtx, {
+    type: 'bar',
+    data: {
+        labels: ['General ICU', 'Severe Sepsis', ['Continuous Renal', 'Replacement Therapy'], 'Trauma'],
+        datasets: [{
+            label: 'Hypophosphatemia Incidence (%)',
+            data: [45, 60, 65, 40],
+            backgroundColor: '#ef4444', // red-500
+            borderColor: '#b91c1c', // red-700
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true, max: 80, title: { display: true, text: 'Incidence Rate (%)' } }
+        }
+    }
+});
+
+// Accordion for Full Review
+const reviewContent = {
+    "Abstract": "Phosphate is a vital anion, yet its dysregulation is common in the intensive care unit (ICU) and is associated with increased mortality. This review summarizes the current understanding of phosphate homeostasis, the pathophysiology and clinical consequences of hypo- and hyperphosphatemia in critical illness, and provides an evidence-based approach to diagnosis and management for the ICU practitioner.",
+    "Introduction": "Phosphate is a critical intracellular anion essential for energy metabolism (ATP), cellular signaling, membrane integrity, and bone structure. Its balance is frequently disrupted in critically ill patients due to factors like malnutrition, organ failure, and aggressive therapies, leading to significant morbidity and mortality. This review outlines the physiology, pathophysiology, and management of phosphate disorders in the ICU.",
+    "Physiology of Homeostasis": "Phosphate balance is maintained by three organs: the intestine (absorption), bone (storage), and kidneys (excretion). Hormonal regulation is key, involving Parathyroid Hormone (PTH), Fibroblast Growth Factor-23 (FGF-23), and active Vitamin D. FGF-23, along with its co-receptor Klotho, is the master regulator of phosphate excretion.",
+    "Epidemiology in the ICU": "Dysphosphatemia is common. Hypophosphatemia occurs in up to 45% of general ICU patients and can exceed 60% in high-risk groups like sepsis or post-operative patients. Hyperphosphatemia is also prevalent, especially in patients with Acute Kidney Injury (AKI), where its incidence can reach 40% or more. Both conditions form a 'U-shaped' curve of risk, where deviations in either direction are associated with higher mortality.",
+    "Pathophysiology": "Hypophosphatemia results from three main mechanisms: 1) intracellular shifts (refeeding syndrome, insulin, alkalosis), 2) decreased intestinal absorption, or 3) increased renal loss. Hyperphosphatemia is most often caused by decreased excretion (AKI) or a massive phosphate load from tissue breakdown (rhabdomyolysis, tumor lysis syndrome).",
+    "Clinical Consequences": "Severe hypophosphatemia (<0.5 mmol/L) causes ATP depletion, leading to diaphragmatic weakness (weaning failure), myocardial dysfunction, hemolysis, and neuromuscular symptoms. Hyperphosphatemia causes acute hypocalcemia (tetany, arrhythmias) and metastatic calcification, contributing to vascular stiffness and organ damage.",
+    "Diagnostic Approach": "Serum phosphate should be measured on ICU admission and monitored in high-risk patients. Interpretation must consider the clinical context, as serum levels represent <1% of total body stores and can be misleading (e.g., normal levels in DKA masking a severe total-body deficit).",
+    "Management Strategies": "For severe or symptomatic hypophosphatemia, intravenous potassium or sodium phosphate is given slowly over 4-8 hours to avoid acute hypocalcemia. For hyperphosphatemia, the primary goal is to treat the underlying cause. Renal replacement therapy (RRT) is the most effective and definitive treatment in the setting of AKI.",
+    "Conclusion": "Phosphate is a critically important but often overlooked electrolyte in the ICU. Understanding the complex pathophysiology and anticipating dysregulation in high-risk patients is key to improving outcomes. Both hypo- and hyperphosphatemia are dangerous, and a systematic approach to diagnosis and management is essential."
+};
+
+const accordionContainer = document.getElementById('accordion-container');
+Object.entries(reviewContent).forEach(([title, content], index) => {
+    const item = document.createElement('div');
+    item.innerHTML = `
+        <button class="accordion-button w-full text-left p-4 bg-slate-100 hover:bg-slate-200 rounded-lg font-semibold text-lg flex justify-between items-center">
+            <span>${title}</span>
+            <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content px-4 py-2 text-slate-600">
+            <p>${content}</p>
+        </div>
+    `;
+    accordionContainer.appendChild(item);
+});
+
+document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+            document.querySelectorAll('.accordion-button svg').forEach(i => i.style.transform = 'rotate(0deg)');
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.style.transform = 'rotate(180deg)';
+        }
+    });
+});
+
+// Study Tools Tabs
+const tabButtons = document.querySelectorAll('.tab-button');
+const tabContents = document.querySelectorAll('.tab-content');
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const tabId = button.getAttribute('data-tab');
+        tabContents.forEach(content => {
+            if (content.id === tabId) {
+                content.classList.remove('hidden');
+            } else {
+                content.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// Quiz Logic
+const quizData = [
+    {
+        question: "Which hormone is the master regulator of phosphate homeostasis by potently suppressing renal phosphate reabsorption?",
+        options: ["Parathyroid Hormone (PTH)", "Fibroblast Growth Factor-23 (FGF-23)", "Active Vitamin D", "Calcitonin"],
+        answer: "Fibroblast Growth Factor-23 (FGF-23)"
+    },
+    {
+        question: "A severely malnourished patient's phosphate drops to 0.4 mmol/L 24 hours after starting nutritional support. What is the mechanism?",
+        options: ["A surge in insulin causes a massive intracellular shift of phosphate.", "Increased renal excretion from diuretics.", "Decreased intestinal absorption.", "Release of phosphate-binding hormones."],
+        answer: "A surge in insulin causes a massive intracellular shift of phosphate."
+    },
+    {
+        question: "What is the single strongest predictor for the development of hyperphosphatemia in the ICU?",
+        options: ["Sepsis", "Massive blood transfusion", "Acute Kidney Injury (AKI)", "Refeeding syndrome"],
+        answer: "Acute Kidney Injury (AKI)"
+    },
+    {
+        question: "What is the primary molecular mechanism by which severe hypophosphatemia leads to organ dysfunction?",
+        options: ["Formation of calcium-phosphate crystals.", "Depletion of intracellular ATP and 2,3-DPG.", "Induction of endothelial cell apoptosis.", "Increased PTH receptor affinity."],
+        answer: "Depletion of intracellular ATP and 2,3-DPG."
+    },
+    {
+        question: "A patient with septic shock and anuria has a phosphate of 2.5 mmol/L. Besides lack of excretion, what else contributes?",
+        options: ["Suppression of FGF-23 by inflammatory cytokines.", "Massive catabolism and cell lysis release intracellular phosphate stores.", "Increased intestinal absorption of phosphate.", "Activation of Vitamin D by the septic process."],
+        answer: "Massive catabolism and cell lysis release intracellular phosphate stores."
+    },
+    {
+        question: "A patient is admitted with DKA. Initial phosphate is high (1.5 mmol/L), but after 12 hours of insulin, it is low (0.4 mmol/L). Why?",
+        options: ["The initial hyperphosphatemia was due to acidosis-induced cellular shifts, masking a severe total-body phosphate deficit.", "Insulin therapy directly stimulates renal excretion of phosphate.", "The initial IV fluids contained agents that bind phosphate.", "Osmotic diuresis only begins after several hours of treatment."],
+        answer: "The initial hyperphosphatemia was due to acidosis-induced cellular shifts, masking a severe total-body phosphate deficit."
+    },
+    {
+        question: "What is the effect of severe hypophosphatemia on the oxyhemoglobin dissociation curve?",
+        options: ["It shifts the curve to the right, decreasing affinity.", "It has no significant effect.", "It shifts the curve to the left, increasing hemoglobin's affinity for oxygen.", "It mimics carbon monoxide poisoning."],
+        answer: "It shifts the curve to the left, increasing hemoglobin's affinity for oxygen."
+    },
+    {
+        question: "A patient develops 'hungry bone syndrome' after parathyroidectomy. What electrolyte pattern is most characteristic?",
+        options: ["Isolated hypophosphatemia.", "Severe hypocalcemia, hypophosphatemia, and hypomagnesemia.", "Hypocalcemia with hyperphosphatemia.", "Hypercalcemia and hyperphosphatemia."],
+        answer: "Severe hypocalcemia, hypophosphatemia, and hypomagnesemia."
+    }
+];
+let currentQuestionIndex = 0;
+const questionArea = document.getElementById('question-area');
+const optionsArea = document.getElementById('options-area');
+const quizNextBtn = document.getElementById('next-question-btn');
+const startBtn = document.getElementById('start-quiz-btn');
+const quizFeedback = document.getElementById('quiz-feedback');
+
+startBtn.addEventListener('click', () => {
+    startBtn.classList.add('hidden');
+    quizNextBtn.classList.remove('hidden');
+    loadQuestion();
+});
+
+quizNextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+    } else {
+        questionArea.innerHTML = `<p class="text-xl font-semibold text-center">Quiz Complete!</p>`;
+        optionsArea.innerHTML = '';
+        quizNextBtn.classList.add('hidden');
+        startBtn.classList.remove('hidden');
+        startBtn.textContent = 'Restart Quiz';
+        currentQuestionIndex = 0;
+    }
+});
+
+function loadQuestion() {
+    quizFeedback.textContent = '';
+    const currentQuestion = quizData[currentQuestionIndex];
+    questionArea.innerHTML = `<p class="text-lg font-medium">${currentQuestionIndex + 1}. ${currentQuestion.question}</p>`;
+    optionsArea.innerHTML = '';
+    
+    const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
+
+    shuffledOptions.forEach(option => {
+        const button = document.createElement('button');
+        button.textContent = option;
+        button.className = 'p-4 border rounded-lg text-left hover:bg-slate-100 transition';
+        button.onclick = () => selectAnswer(option, currentQuestion.answer);
+        optionsArea.appendChild(button);
+    });
+}
+
+function selectAnswer(selected, correct) {
+    if (selected === correct) {
+        quizFeedback.textContent = 'Correct!';
+        quizFeedback.className = 'text-center mb-4 h-8 text-green-600 font-bold';
+    } else {
+        quizFeedback.textContent = 'Incorrect.';
+        quizFeedback.className = 'text-center mb-4 h-8 text-red-600 font-bold';
+    }
+    Array.from(optionsArea.children).forEach(btn => {
+        btn.disabled = true;
+        if(btn.textContent === correct) {
+            btn.classList.add('bg-green-200', 'border-green-500');
+        } else if (btn.textContent === selected) {
+            btn.classList.add('bg-red-200', 'border-red-500');
+        }
+    });
+}
+
+
+// Flashcard Logic
+const flashcardData = [
+    { front: "Fibroblast Growth Factor-23 (FGF-23)", back: "The master regulator of phosphate homeostasis. Secreted by bone cells, it potently suppresses phosphate reabsorption in the kidneys." },
+    { front: "PTH vs. FGF-23", back: "FGF-23 is the primary phosphate regulator. PTH is the primary calcium regulator; its effect on phosphate is secondary." },
+    { front: "Refeeding Syndrome", back: "A metabolic complication in malnourished patients. A sudden insulin surge drives phosphate, potassium, and magnesium into cells, causing severe deficits." },
+    { front: "Primary mechanism in Refeeding Syndrome", back: "A massive intracellular shift of phosphate driven by insulin, as cells uptake phosphate to produce ATP." },
+    { front: "Hyperphosphatemia", back: "An elevated level of phosphate in the blood, typically >1.45 mmol/L." },
+    { front: "Most common cause of hyperphosphatemia in ICU", back: "Acute Kidney Injury (AKI), as failed kidneys cannot excrete the daily phosphate load." },
+    { front: "Rhabdomyolysis", back: "Breakdown of muscle tissue, releasing large amounts of intracellular contents like phosphate and potassium." },
+    { front: "Molecular injury in severe hypophosphatemia", back: "Depletion of ATP (cellular energy) and 2,3-DPG (impairs oxygen release from hemoglobin)." },
+    { front: "Consequence of ATP depletion", back: "Cellular energy failure, causing muscle weakness, impaired cardiac contractility, and neurological dysfunction." },
+    { front: "Consequence of 2,3-DPG depletion", back: "Causes hemoglobin to bind oxygen more tightly, impairing oxygen delivery to tissues." },
+    { front: "Critical respiratory effect of severe hypophosphatemia", back: "Diaphragmatic weakness due to ATP depletion, leading to failure to wean from mechanical ventilation." },
+    { front: "Hypophosphatemia in CRRT", back: "Phosphate is easily filtered out, and standard replacement fluids are phosphate-free, leading to a net loss." },
+    { front: "Management of severe hypophosphatemia", back: "Intravenous (IV) phosphate replacement, infused slowly over 4-8 hours." },
+    { front: "Risk of rapid IV phosphate infusion", back: "Acute hypocalcemia, hypotension, and deposition of calcium-phosphate crystals in soft tissues." },
+    { front: "The phosphate-mortality relationship in the ICU", back: "A 'U-shaped' curve, where both low and high serum levels are associated with increased mortality." },
+    { front: "Clinical triad suggesting Rhabdomyolysis", back: "1. Severe hyperphosphatemia<br>2. Hyperkalemia<br>3. Markedly elevated creatine kinase (CK)." },
+    { front: "Refractory Hypophosphatemia", back: "A state where hypophosphatemia persists despite adequate phosphate replacement." },
+    { front: "Key electrolyte causing refractory hypophosphatemia", back: "Hypomagnesemia. Magnesium deficiency impairs the body's ability to retain and utilize phosphate." },
+    { front: "Three main mechanisms of hypophosphatemia", back: "1. Intracellular shifting<br>2. Decreased absorption<br>3. Increased excretion." },
+    { front: "Primary mechanism of injury in hyperphosphatemia", back: "Binding with serum calcium, leading to hypocalcemia and the deposition of calcium-phosphate crystals." },
+    { front: "Definitive treatment for severe hyperphosphatemia with AKI", back: "Renal Replacement Therapy (RRT), such as hemodialysis or CRRT." },
+    { front: "Location of majority of body's phosphate", back: "Approximately 85% is stored in bone and teeth as hydroxyapatite." },
+    { front: "Serum phosphate vs. total body stores", back: "Serum phosphate represents <1% of total body phosphate, so a normal level can mask a significant total-body deficit." },
+    { front: "Effect of respiratory alkalosis on phosphate", back: "Alkalosis stimulates glycolysis, increasing cellular uptake of phosphate and causing an acute drop in serum levels." },
+    { front: "Fun Fact: Phosphorus in DNA", back: "Phosphate groups form the structural backbone of DNA and RNA, linking the sugar components together." }
+];
+let currentCardIndex = 0;
+const flashcard = document.getElementById('flashcard');
+const cardFront = document.getElementById('flashcard-front');
+const cardBack = document.getElementById('flashcard-back');
+const prevBtn = document.getElementById('prev-card-btn');
+const flashcardNextBtn = document.getElementById('next-card-btn');
+const cardCounter = document.getElementById('card-counter');
+
+function showCard() {
+    flashcard.classList.remove('is-flipped');
+    cardFront.textContent = flashcardData[currentCardIndex].front;
+    cardBack.innerHTML = `<p>${flashcardData[currentCardIndex].back}</p>`;
+    cardCounter.textContent = `${currentCardIndex + 1} / ${flashcardData.length}`;
+}
+
+flashcard.addEventListener('click', () => flashcard.classList.toggle('is-flipped'));
+prevBtn.addEventListener('click', () => {
+    currentCardIndex = (currentCardIndex - 1 + flashcardData.length) % flashcardData.length;
+    showCard();
+});
+flashcardNextBtn.addEventListener('click', () => {
+    currentCardIndex = (currentCardIndex + 1) % flashcardData.length;
+    showCard();
+});
+showCard(); // Initial load
+
+// Study Guide Content
+const studyGuideHTML = `
+    <h3 class="text-2xl font-bold mb-4">Advanced Phosphate Homeostasis in the ICU</h3>
+    <p class="mb-4">This guide focuses on the complex mechanisms of phosphate dysregulation in critically ill patients, moving beyond basic definitions to explore nuanced hormonal control and challenging clinical scenarios.</p>
+    
+    <h4 class="text-xl font-semibold mt-6 mb-2">Key Concepts to Master</h4>
+    <ul class="list-disc list-inside space-y-2">
+        <li><strong>FGF-23: The Master Regulator:</strong> While PTH influences phosphate, FGF-23 is the true master regulator. Secreted by bone, it tells the kidneys to excrete phosphate. Its co-receptor, Klotho, is crucial for its function and is often deficient in kidney disease, leading to FGF-23 resistance.</li>
+        <li><strong>Serum Level vs. Total Body Stores:</strong> This is a critical concept. The serum contains less than 1% of the body's phosphate. Conditions like Diabetic Ketoacidosis (DKA) can cause misleadingly high serum levels due to acidosis, despite a severe underlying total-body deficit.</li>
+        <li><strong>The Power of Cellular Shifts:</strong> Insulin (from nutrition/PN), alkalosis (e.g., from hyperventilation), and catecholamines (e.g., epinephrine) all cause a rapid shift of phosphate from the blood into cells, leading to acute, and sometimes profound, hypophosphatemia.</li>
+        <li><strong>2,3-DPG and Oxygen Delivery:</strong> Severe hypophosphatemia depletes 2,3-Diphosphoglycerate in red blood cells. This causes a "left shift" in the oxyhemoglobin dissociation curve, meaning hemoglobin binds oxygen more tightly and impairs its release to tissues.</li>
+        <li><strong>Multi-Electrolyte Syndromes:</strong> Phosphate disturbances rarely occur in isolation. Always consider concurrent abnormalities. For example, 'Hungry Bone Syndrome' after parathyroidectomy causes severe deficits in phosphate, calcium, and magnesium. Refractory hypophosphatemia is often caused by concurrent hypomagnesemia.</li>
+    </ul>
+    
+    <h4 class="text-xl font-semibold mt-6 mb-2">Key Vocabulary</h4>
+    <dl>
+        <dt class="font-semibold">Fibroblast Growth Factor-23 (FGF-23):</dt>
+        <dd class="mb-2 ml-4">The primary phosphaturic (phosphate-excreting) hormone that is the master regulator of phosphate balance.</dd>
+        <dt class="font-semibold">Refeeding Syndrome:</dt>
+        <dd class="mb-2 ml-4">A life-threatening complication caused by rapid intracellular shifts of phosphate, potassium, and magnesium upon re-introducing nutrition to severely malnourished individuals.</dd>
+        <dt class="font-semibold">Klotho:</dt>
+        <dd class="mb-2 ml-4">An essential co-receptor for FGF-23 located in the kidneys. Its deficiency in chronic kidney disease leads to a state of FGF-23 resistance and contributes to hyperphosphatemia.</dd>
+        <dt class="font-semibold">Rhabdomyolysis:</dt>
+        <dd class="mb-2 ml-4">Massive breakdown of muscle tissue, which releases large amounts of intracellular contents, including phosphate and potassium, into the bloodstream.</dd>
+    </dl>
+
+    <h4 class="text-xl font-semibold mt-6 mb-2">Key Questions for Active Recall</h4>
+    <ul class="list-disc list-inside space-y-2">
+        <li>Why does a patient with DKA present with a normal phosphate level but develop severe hypophosphatemia after treatment begins?</li>
+        <li>What are the two main reasons a patient with septic shock and AKI develops severe hyperphosphatemia?</li>
+        <li>How does giving IV phosphate too quickly cause harm?</li>
+        <li>What is the first electrolyte you should check in a patient who is not responding to IV phosphate replacement?</li>
+        <li>Explain the mechanism by which hyperventilating a patient can lower their serum phosphate.</li>
+    </ul>
+`;
+document.getElementById('study-guide-content').innerHTML = studyGuideHTML;
+
+// Audio Player Logic
+document.querySelectorAll('.audio-play-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const audioId = this.getAttribute('data-audio');
+        const audio = document.getElementById(audioId);
+        const playBtn = document.querySelector(`.audio-play-btn[data-audio="${audioId}"]`);
+        const pauseBtn = document.querySelector(`.audio-pause-btn[data-audio="${audioId}"]`);
+        const progressBar = document.querySelector(`.audio-progress-bar[data-audio="${audioId}"]`);
+        const timeDisplay = document.querySelector(`.audio-time[data-audio="${audioId}"]`);
+        
+        // Pause all other audio players
+        document.querySelectorAll('audio').forEach(a => {
+            if (a.id !== audioId) {
+                a.pause();
+                a.currentTime = 0;
+                const otherPlayBtn = document.querySelector(`.audio-play-btn[data-audio="${a.id}"]`);
+                const otherPauseBtn = document.querySelector(`.audio-pause-btn[data-audio="${a.id}"]`);
+                const otherProgressBar = document.querySelector(`.audio-progress-bar[data-audio="${a.id}"]`);
+                const otherTimeDisplay = document.querySelector(`.audio-time[data-audio="${a.id}"]`);
+                
+                if (otherPlayBtn && otherPauseBtn) {
+                    otherPlayBtn.classList.remove('hidden');
+                    otherPauseBtn.classList.add('hidden');
+                }
+                if (otherProgressBar) {
+                    otherProgressBar.style.width = '0%';
+                }
+                if (otherTimeDisplay) {
+                    otherTimeDisplay.textContent = '0:00';
+                }
+            }
+        });
+        
+        // Play the selected audio
+        audio.play();
+        playBtn.classList.add('hidden');
+        pauseBtn.classList.remove('hidden');
+        
+        // Update progress bar and time display
+        audio.addEventListener('timeupdate', function() {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+            
+            // Format time display
+            const minutes = Math.floor(audio.currentTime / 60);
+            const seconds = Math.floor(audio.currentTime % 60);
+            timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        });
+        
+        // Reset when audio ends
+        audio.addEventListener('ended', function() {
+            playBtn.classList.remove('hidden');
+            pauseBtn.classList.add('hidden');
+            progressBar.style.width = '0%';
+            timeDisplay.textContent = '0:00';
+        });
+    });
+});
+
+document.querySelectorAll('.audio-pause-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const audioId = this.getAttribute('data-audio');
+        const audio = document.getElementById(audioId);
+        const playBtn = document.querySelector(`.audio-play-btn[data-audio="${audioId}"]`);
+        const pauseBtn = document.querySelector(`.audio-pause-btn[data-audio="${audioId}"]`);
+        
+        audio.pause();
+        playBtn.classList.remove('hidden');
+        pauseBtn.classList.add('hidden');
+    });
+});
+
+</script>
+</body>
+</html>
