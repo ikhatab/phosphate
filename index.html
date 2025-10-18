@@ -62,24 +62,6 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
-        .audio-item {
-            transition: all 0.3s ease;
-        }
-        .audio-item:hover {
-            background-color: #f1f5f9;
-        }
-        .audio-progress {
-            height: 4px;
-            background-color: #e2e8f0;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        .audio-progress-bar {
-            height: 100%;
-            background-color: #3b82f6;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
     </style>
 </head>
 <body class="text-slate-700">
@@ -211,11 +193,10 @@
         <section id="study" class="py-16 bg-slate-100 -mx-6 px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-10">Interactive Study Tools</h2>
             <div class="card">
-                <div class="flex justify-center mb-8 border-b overflow-x-auto">
+                <div class="flex justify-center mb-8 border-b">
                     <button class="tab-button active py-2 px-6 font-semibold" data-tab="quiz">Knowledge Check</button>
                     <button class="tab-button py-2 px-6 font-semibold" data-tab="flashcards">Flashcards</button>
                     <button class="tab-button py-2 px-6 font-semibold" data-tab="study-guide">Study Guide</button>
-                    <button class="tab-button py-2 px-6 font-semibold" data-tab="audio-guide">Audio Guide</button>
                 </div>
 
                 <div id="quiz" class="tab-content">
@@ -251,102 +232,6 @@
                 <div id="study-guide" class="tab-content hidden">
                     <div id="study-guide-content" class="prose max-w-none">
                         <!-- Study guide content injected here -->
-                    </div>
-                </div>
-
-                <div id="audio-guide" class="tab-content hidden">
-                    <div class="max-w-3xl mx-auto">
-                        <p class="text-center text-lg mb-6">Listen to audio explanations of key concepts in phosphate management.</p>
-                        
-                        <div class="space-y-6">
-                            <!-- Audio Item 1 -->
-                            <div class="audio-item p-4 border rounded-lg">
-                                <h3 class="text-lg font-semibold mb-2">Introduction to Phosphate in Critical Care</h3>
-                                <div class="flex items-center space-x-4 mb-2">
-                                    <button class="audio-play-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition" data-audio="audio1">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="audio-pause-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition hidden" data-audio="audio1">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <div class="flex-1">
-                                        <div class="audio-progress">
-                                            <div class="audio-progress-bar" data-audio="audio1"></div>
-                                        </div>
-                                    </div>
-                                    <span class="audio-time text-sm text-slate-500" data-audio="audio1">0:00</span>
-                                </div>
-                                <audio id="audio1" preload="metadata">
-                                    <source src="path/to/your/audio-file-1.mp3" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                                <p class="text-sm text-slate-600">A brief overview of why phosphate management is critical in ICU patients and the clinical significance of dysregulation.</p>
-                            </div>
-                            
-                            <!-- Audio Item 2 -->
-                            <div class="audio-item p-4 border rounded-lg">
-                                <h3 class="text-lg font-semibold mb-2">Pathophysiology of Hypophosphatemia</h3>
-                                <div class="flex items-center space-x-4 mb-2">
-                                    <button class="audio-play-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition" data-audio="audio2">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="audio-pause-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition hidden" data-audio="audio2">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <div class="flex-1">
-                                        <div class="audio-progress">
-                                            <div class="audio-progress-bar" data-audio="audio2"></div>
-                                        </div>
-                                    </div>
-                                    <span class="audio-time text-sm text-slate-500" data-audio="audio2">0:00</span>
-                                </div>
-                                <audio id="audio2" preload="metadata">
-                                    <source src="path/to/your/audio-file-2.mp3" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                                <p class="text-sm text-slate-600">Detailed explanation of the mechanisms leading to low phosphate levels and their clinical consequences.</p>
-                            </div>
-                            
-                            <!-- Audio Item 3 -->
-                            <div class="audio-item p-4 border rounded-lg">
-                                <h3 class="text-lg font-semibold mb-2">Management Strategies for Hyperphosphatemia</h3>
-                                <div class="flex items-center space-x-4 mb-2">
-                                    <button class="audio-play-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition" data-audio="audio3">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="audio-pause-btn bg-blue-600 text-white rounded-full p-2 hover:bg-blue-700 transition hidden" data-audio="audio3">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <div class="flex-1">
-                                        <div class="audio-progress">
-                                            <div class="audio-progress-bar" data-audio="audio3"></div>
-                                        </div>
-                                    </div>
-                                    <span class="audio-time text-sm text-slate-500" data-audio="audio3">0:00</span>
-                                </div>
-                                <audio id="audio3" preload="metadata">
-                                    <source src="path/to/your/audio-file-3.mp3" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                                <p class="text-sm text-slate-600">Approaches to managing elevated phosphate levels in critically ill patients, including indications for renal replacement therapy.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8 text-center text-sm text-slate-500">
-                            <p>Note: Replace the audio file paths with your actual audio files. Supported formats: MP3, WAV, OGG.</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -676,78 +561,6 @@ const studyGuideHTML = `
     </ul>
 `;
 document.getElementById('study-guide-content').innerHTML = studyGuideHTML;
-
-// Audio Player Logic
-document.querySelectorAll('.audio-play-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const audioId = this.getAttribute('data-audio');
-        const audio = document.getElementById(audioId);
-        const playBtn = document.querySelector(`.audio-play-btn[data-audio="${audioId}"]`);
-        const pauseBtn = document.querySelector(`.audio-pause-btn[data-audio="${audioId}"]`);
-        const progressBar = document.querySelector(`.audio-progress-bar[data-audio="${audioId}"]`);
-        const timeDisplay = document.querySelector(`.audio-time[data-audio="${audioId}"]`);
-        
-        // Pause all other audio players
-        document.querySelectorAll('audio').forEach(a => {
-            if (a.id !== audioId) {
-                a.pause();
-                a.currentTime = 0;
-                const otherPlayBtn = document.querySelector(`.audio-play-btn[data-audio="${a.id}"]`);
-                const otherPauseBtn = document.querySelector(`.audio-pause-btn[data-audio="${a.id}"]`);
-                const otherProgressBar = document.querySelector(`.audio-progress-bar[data-audio="${a.id}"]`);
-                const otherTimeDisplay = document.querySelector(`.audio-time[data-audio="${a.id}"]`);
-                
-                if (otherPlayBtn && otherPauseBtn) {
-                    otherPlayBtn.classList.remove('hidden');
-                    otherPauseBtn.classList.add('hidden');
-                }
-                if (otherProgressBar) {
-                    otherProgressBar.style.width = '0%';
-                }
-                if (otherTimeDisplay) {
-                    otherTimeDisplay.textContent = '0:00';
-                }
-            }
-        });
-        
-        // Play the selected audio
-        audio.play();
-        playBtn.classList.add('hidden');
-        pauseBtn.classList.remove('hidden');
-        
-        // Update progress bar and time display
-        audio.addEventListener('timeupdate', function() {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = progress + '%';
-            
-            // Format time display
-            const minutes = Math.floor(audio.currentTime / 60);
-            const seconds = Math.floor(audio.currentTime % 60);
-            timeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        });
-        
-        // Reset when audio ends
-        audio.addEventListener('ended', function() {
-            playBtn.classList.remove('hidden');
-            pauseBtn.classList.add('hidden');
-            progressBar.style.width = '0%';
-            timeDisplay.textContent = '0:00';
-        });
-    });
-});
-
-document.querySelectorAll('.audio-pause-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const audioId = this.getAttribute('data-audio');
-        const audio = document.getElementById(audioId);
-        const playBtn = document.querySelector(`.audio-play-btn[data-audio="${audioId}"]`);
-        const pauseBtn = document.querySelector(`.audio-pause-btn[data-audio="${audioId}"]`);
-        
-        audio.pause();
-        playBtn.classList.remove('hidden');
-        pauseBtn.classList.add('hidden');
-    });
-});
 
 </script>
 </body>
